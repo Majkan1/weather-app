@@ -2,8 +2,14 @@ body{
     margin:0px;
 }
 .header{
-    height:50px;
+    height:100px;
     width:auto;
     background-color:aqua;
-       
+    display:flex;
+    justify-content: space-between;;
+}
+
+input{
+    display:flex;
+    justify-content:center;
 }
