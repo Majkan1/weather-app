@@ -4,6 +4,7 @@ export default function App() {
   return (
       <>
         <Header/>
+        <AddButton/>
       </>
   )
 }
@@ -40,4 +41,12 @@ function About(){
       <p>Prosty przykład nawigacji z react-router-dom.</p>
     </div>
   )
+}
+
+function AddButton(){
+    return (
+      <>
+        <buton>Search location</buton>
+      </>
+    )
 }

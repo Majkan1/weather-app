@@ -42,3 +42,11 @@ input{
     font-size:25px;
     text-decoration:none;
 }
+
+button{
+    width:50px;
+    height:25px;
+    background-color: yellow;
+    border:1px solid lightgreen;
+    border-radius: 12px;
+}
