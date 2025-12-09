@@ -6,16 +6,24 @@ body{
     width:auto;
     background-color:aqua;
     display:flex;
-    justify-content: space-between;;
+    justify-content: space-between;
+    align-items: center;
 }
 
 input{
     display:flex;
     justify-content:center;
+    align-items: center;
+    width:200px;
+    border:1px solid black;
+    border-radius:15px;
+    padding:5px;
 }
 
 .Home,
 .About{
+    text-align: center;
     color:black;
-    font-size:15px;
+    font-size:25px;
+    gap:5px;
 }
