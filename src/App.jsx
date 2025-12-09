@@ -13,8 +13,8 @@ function Header(){
     <>
     <header className = "header">
       <nav>
-        <Link to = "/">Home</Link>
-        <Link to ="/about">About</Link>
+        <Link  className = "Home"to = "/">Home</Link>
+        <Link className = "About"to ="/about">About</Link>
       </nav>
     </header>
       <Routes>
