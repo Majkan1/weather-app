@@ -1,21 +1,6 @@
-# Pogoda — aplikacja od zera
+Hi I am Mikołaj and today I want to show you my first weather application.
+Everyday I will do some changes so stay tune.
+I am very exited that we can share our Programming journey together .
+I hope you enjoy and see you soon.
 
-Repozytorium: https://github.com/Majkan1/weather-app
-Strona: https://majkan1.github.io/weather-app/
-
-## Jak uruchomić lokalnie
-```powershell
-cd "C:\\Users\\majka\\Desktop\\Weather-app\\vite-project"
-npm install
-npm run dev
-```
-
-## Build i podgląd produkcyjny
-```powershell
-npm run build
-npm run preview
-```
-Otwórz `http://localhost:4173/weather-app/`.
-
-## Deploy na GitHub Pages
-Push na `main` automatycznie buduje i publikuje stronę.
+<img width="253" height="189" alt="image" src="https://github.com/user-attachments/assets/4f679643-e194-46fc-a567-995e95740cfe" />
