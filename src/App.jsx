@@ -17,8 +17,26 @@ function Main(){
       </nav>
       <Routes>
         <Route path = "/" element = {<Home/>}/>
-        <Route path = "/" element = {<About/>}/>
+        <Route path = "/about" element = {<About/>}/>
       </Routes>
     </>
+  )
+}
+
+function Home(){
+  return (
+    <div>
+      <h1>Pogoda — Strona główna</h1>
+      <p>Tu zaczniesz budować widok pogody.</p>
+    </div>
+  )
+}
+
+function About(){
+  return (
+    <div>
+      <h1>About</h1>
+      <p>Prosty przykład nawigacji z react-router-dom.</p>
+    </div>
   )
 }
