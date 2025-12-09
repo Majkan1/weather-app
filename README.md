@@ -1,6 +1,21 @@
 # Pogoda — aplikacja od zera
-HI everyone I want to show you my weather app which I will be creating everyday . 
-I want to add to this a small piece everyday . 
-I hope you enjoyed my journey with this classical programing task . 
 
-<img width="150" height="150" alt="image" src="https://github.com/user-attachments/assets/f3175031-b3eb-47a1-a0a0-556f06014932" />
+Repozytorium: https://github.com/Majkan1/weather-app
+Strona: https://majkan1.github.io/weather-app/
+
+## Jak uruchomić lokalnie
+```powershell
+cd "C:\\Users\\majka\\Desktop\\Weather-app\\vite-project"
+npm install
+npm run dev
+```
+
+## Build i podgląd produkcyjny
+```powershell
+npm run build
+npm run preview
+```
+Otwórz `http://localhost:4173/weather-app/`.
+
+## Deploy na GitHub Pages
+Push na `main` automatycznie buduje i publikuje stronę.
