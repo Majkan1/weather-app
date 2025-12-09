@@ -7,18 +7,32 @@ body,html{
     width:auto;
     background-color:aqua;
     display:flex;
-    justify-content: space-between;
     align-items: center;
+    padding: 0 16px;
+}
+
+.header nav{
+    display:flex;
+    width:100%;
+    justify-content: space-between; /* rozsuwa Home i About na boki */
+    align-items:center;
 }
 
 input{
-    display:flex;
-    justify-content:center;
-    align-items: center;
-    width:200px;
+    display:block; /* element blokowy */
+    width:280px;
+    max-width:90vw;
+    margin: 0 auto; /* centrowanie poziome */
     border:1px solid black;
     border-radius:15px;
-    padding:5px;
+    padding:8px 12px;
+}
+
+.main{
+    display:flex;
+    justify-content:center; /* centrowanie w kontenerze */
+    padding:16px;
+    width:100%;
 }
 
 .Home,
@@ -26,5 +40,5 @@ input{
     text-align: center;
     color:black;
     font-size:25px;
-    gap:5px;
+    text-decoration:none;
 }

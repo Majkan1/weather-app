@@ -27,7 +27,7 @@ function Header(){
 
 function Main(){
   return (
-    <div>
+    <div className="main">
       <input type = "text" placeholder = "Write here the town you want to see a weather"/>
     </div>
   )
