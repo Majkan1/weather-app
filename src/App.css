@@ -2,7 +2,7 @@ body{
     margin:0px;
 }
 .header{
-    height:100px;
+    height:60px;
     width:auto;
     background-color:aqua;
     display:flex;
@@ -12,4 +12,10 @@ body{
 input{
     display:flex;
     justify-content:center;
+}
+
+.Home,
+.About{
+    color:black;
+    font-size:15px;
 }
