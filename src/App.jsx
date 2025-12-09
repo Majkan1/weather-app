@@ -3,34 +3,32 @@ import {Routes,Route,Link} from "react-router-dom";
 export default function App() {
   return (
       <>
-        <Main/>
+        <Header/>
       </>
   )
 }
 
-function Main(){
+function Header(){
   return (
     <>
     <header className = "header">
-      <img src = "logo\logo/logo.png" alt = "My logo"/>
       <nav>
         <Link to = "/">Home</Link>
         <Link to ="/about">About</Link>
       </nav>
     </header>
       <Routes>
-        <Route path = "/" element = {<Home/>}/>
+        <Route path = "/" element = {<Main/>}/>
         <Route path = "/about" element = {<About/>}/>
       </Routes>
     </>
   )
 }
 
-function Home(){
+function Main(){
   return (
     <div>
-      <h1>Pogoda — Strona główna</h1>
-      <p>Tu zaczniesz budować widok pogody.</p>
+      <input type = "text" placeholder = "Write here the town you want to see a weather"/>
     </div>
   )
 }
