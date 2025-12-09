@@ -12,6 +12,7 @@ function Main(){
   return (
     <>
     <header className = "header">
+      <img src = "logo/logo.png" alt = "My logo"/>
       <nav>
         <Link to = "/">Home</Link>
         <Link to ="/about">About</Link>
