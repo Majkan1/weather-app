@@ -1,5 +1,9 @@
+body{
+    margin:0px;
+}
 .header{
     height:50px;
     width:auto;
-    background-color:aqua;   
+    background-color:aqua;
+       
 }
