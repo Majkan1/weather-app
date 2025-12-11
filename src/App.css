@@ -20,7 +20,7 @@ body,html{
 
 input{
     display:block; /* element blokowy */
-    width:281px;
+    width:280px;
     max-width:90vw;
     margin: 0 auto; /* centrowanie poziome */
     border:1px solid black;
