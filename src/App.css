@@ -5,7 +5,7 @@ body,html{
 .header{
     height:60px;
     width:auto;
-    background-color:aqua;
+    background-color:blue;
     display:flex;
     align-items: center;
     padding: 0 16px;
