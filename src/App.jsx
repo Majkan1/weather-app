@@ -12,6 +12,7 @@ export default function App() {
 function Header(){
   return (
     <>
+    <p>ala ma kota dkdfmdmsddsdmfsdfmdmfsmfsmdsdfmskdl</p>
     <header className = "header">
       <nav>
         <Link  className = "Home"to = "/">Home</Link>
