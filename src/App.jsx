@@ -10,7 +10,7 @@ export default function App() {
 }
 
 function Header(){
-  return (
+    return (
     <>
     <p>ala ma kota dkdfmdmsddsdmfsdfmdmfsmfsmdsdfmskdl</p>
     <header className = "header">
