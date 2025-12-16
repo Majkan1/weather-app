@@ -3,7 +3,6 @@ export default function App() {
   return (
       <>
         <Main/>
-        <About/>
         <AddButton/>
       </>
   )
@@ -21,7 +20,7 @@ function Main(){
 function AddButton(){
     return (
       <>
-        <buton>Search location</buton>
+        <button>Search location</button>
       </>
     )
 }
