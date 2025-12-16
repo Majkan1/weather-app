@@ -1,29 +1,12 @@
 import './App.css'
-import {Routes,Route,Link} from "react-router-dom";
 export default function App() {
   return (
       <>
         <Header/>
         <AddButton/>
+        <Main/>
+        <About/>
       </>
-  )
-}
-
-function Header(){
-  return (
-    <>
-    <p>ala ma kota dkdfmdmsddsdmfsdfmdmfsmfsmdsdfmskdl</p>
-    <header className = "header">
-      <nav>
-        <Link  className = "Home"to = "/">Home</Link>
-        <Link className = "About"to ="/about">About</Link>
-      </nav>
-    </header>
-      <Routes>
-        <Route path = "/" element = {<Main/>}/>
-        <Route path = "/about" element = {<About/>}/>
-      </Routes>
-    </>
   )
 }
 
