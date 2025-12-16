@@ -2,7 +2,6 @@ import './App.css'
 export default function App() {
   return (
       <>
-        <Header/>
         <AddButton/>
         <Main/>
         <About/>
