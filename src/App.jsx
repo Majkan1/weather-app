@@ -2,9 +2,9 @@ import './App.css'
 export default function App() {
   return (
       <>
-        <AddButton/>
         <Main/>
         <About/>
+        <AddButton/>
       </>
   )
 }
@@ -17,14 +17,6 @@ function Main(){
   )
 }
 
-function About(){
-  return (
-    <div>
-      <h1>About</h1>
-      <p>Prosty przykład nawigacji z react-router-dom.</p>
-    </div>
-  )
-}
 
 function AddButton(){
     return (
