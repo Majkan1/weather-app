@@ -12,6 +12,7 @@ function Main(){
   return (
     <div className="main">
       <input type = "text" placeholder = "Write here the town you want to see a weather"/>
+      <button>Search location</button>
     </div>
   )
 }
@@ -20,7 +21,6 @@ function Main(){
 function AddButton(){
     return (
       <>
-        <button>Search location</button>
       </>
     )
 }
