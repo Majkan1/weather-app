@@ -2,45 +2,22 @@ body,html{
     margin:0px;
     height:100%;
 }
-.header{
-    height:60px;
-    width:auto;
-    background-color:blue;
-    display:flex;
-    align-items: center;
-    padding: 0 16px;
-}
-
-.header nav{
-    display:flex;
-    width:100%;
-    justify-content: space-between; /* rozsuwa Home i About na boki */
-    align-items:center;
-}
 
 input{
-    display:block; /* element blokowy */
+    display:block;
     width:280px;
     max-width:90vw;
-    margin: 0 auto; /* centrowanie poziome */
     border:1px solid black;
     border-radius:15px;
     padding:8px 12px;
+    margin-right:20px;
 }
 
 .main{
     display:flex;
-    justify-content:center; /* centrowanie w kontenerze */
+    justify-content:center;
     padding:16px;
     width:100%;
-}
-
-.Home,
-.About{
-    text-align: center;
-    color:black;
-    font-size:25px;
-    text-decoration:none;
 }
 
 button{
