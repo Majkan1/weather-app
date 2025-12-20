@@ -25,7 +25,12 @@ input{
 ul{
     display:flex;
     flex-direction:column;
-    justify-content:center;    
+    justify-content:center;  
+    text-align: center;
+    background-color:bisque;
+    border-radius:25px;
+    width:200px;
+    height:200px;  
 }
 button{
     width:150px;
