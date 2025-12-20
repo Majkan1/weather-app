@@ -20,8 +20,10 @@ function Main(){
 
   const array1 =  array.filter(item => item.includes(tekst));
   return (
-    <div className="main">
-      <input type = "text" value = {tekst} placeholder = "Write here the town you want to see a weather" onChange = {(e)=>setTekst(e.target.value)}/>
+    <div>
+      <div className="main">
+        <input type = "text" value = {tekst} placeholder = "Write here the town you want to see a weather" onChange = {(e)=>setTekst(e.target.value)}/>
+      </div>
       <ul>
         {array1.map((index,item)=>(
           <li key = {index}>{item}</li>))}
