@@ -20,7 +20,6 @@ input{
     padding:16px;
     width:100%;
     align-items:center;
-    width: 250px;
 }
 
 ul{
@@ -29,7 +28,8 @@ ul{
     justify-content:center;  
     align-items: center;
     background-color:bisque;
-    border-radius:25px; 
+    border-radius:25px;
+    width: 250px; 
 }
 button{
     width:150px;
