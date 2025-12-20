@@ -18,6 +18,7 @@ input{
     justify-content:center;
     padding:16px;
     width:100%;
+    align-items:center;
 }
 
 button{

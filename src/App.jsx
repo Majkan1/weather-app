@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import './App.css'
 export default function App() {
   return (
@@ -9,9 +10,22 @@ export default function App() {
 }
 
 function Main(){
+  const [tekst,setTekst] = useState("");
+
+  const array = [
+    'Warsaw','Minsk',
+    'Belarus','Poland',
+    'Berlin','Germany'
+  ];
+
+  const array1 = [ array.filter(item => item.includes(tekst))];
   return (
     <div className="main">
-      <input type = "text" placeholder = "Write here the town you want to see a weather"/>
+      <input type = "text" value = {tekst} placeholder = "Write here the town you want to see a weather" onChange = {(e)=>setTekst(e.target.value)}/>
+      <ul>
+        {tekst === array1 ?
+         <li> {tekst}</li> : <li></li>}
+      </ul>
       <button>Search location</button>
     </div>
   )
