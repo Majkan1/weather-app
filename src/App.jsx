@@ -18,7 +18,7 @@ function Main(){
     'Berlin','Germany'
   ];
 
-  const array1 =  array.filter(item => item.toLowerCase().includes(tekst));
+  const array1 =  array.filter(item => item.toLowerCase().includes(tekst.toLowerCase()));
   return (
     <div>
       <div className="main">
