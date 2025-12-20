@@ -18,14 +18,14 @@ function Main(){
     'Berlin','Germany'
   ];
 
-  const array1 =  array.filter(item => item.includes(tekst));
+  const array1 =  array.filter(item => item.toLowerCase().includes(tekst));
   return (
     <div>
       <div className="main">
         <input type = "text" value = {tekst} placeholder = "Write here the town you want to see a weather" onChange = {(e)=>setTekst(e.target.value)}/>
       </div>
       <ul>
-        {array1.map((index,item)=>(
+        {tekst && array1.map((item,index)=>(
           <li key = {index}>{item}</li>))}
       </ul>
       <button>Search location</button>
