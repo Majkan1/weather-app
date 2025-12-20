@@ -26,11 +26,9 @@ ul{
     display:flex;
     flex-direction:column;
     justify-content:center;  
-    text-align: center;
+    align-items: center;
     background-color:bisque;
-    border-radius:25px;
-    width:200px;
-    height:200px;  
+    border-radius:25px; 
 }
 button{
     width:150px;
