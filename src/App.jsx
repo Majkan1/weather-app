@@ -18,7 +18,7 @@ function Main(){
     'Berlin','Germany'
   ];
 
-  const array1 =  array.filter(item => item.toLowerCase().includes(tekst.toLowerCase()));
+  const array1 = array.filter(item => item.toLowerCase().includes(tekst.toLowerCase()));
   return (
     <div>
       <div className="main">
@@ -26,7 +26,7 @@ function Main(){
       </div>
       <ul>
         {tekst && array1.map((item,index)=>(
-          <li key = {index}>{item}</li>))}
+          <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer'}}>{item}</li>))}
       </ul>
       <button>Search location</button>
     </div>
