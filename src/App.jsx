@@ -26,7 +26,7 @@ function Main(){
       </div>
       <ul>
         {tekst && array1.map((item,index)=>(
-          <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer'}}>{item}</li>))}
+          <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer',color:'white'}}>{item}</li>))}
       </ul>
       <button>Search location</button>
     </div>

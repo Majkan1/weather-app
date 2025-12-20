@@ -22,6 +22,11 @@ input{
     align-items:center;
 }
 
+ul{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;    
+}
 button{
     width:150px;
     height:25px;
