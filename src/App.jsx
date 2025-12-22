@@ -27,7 +27,7 @@ function Main(){
         <input type = "text" value = {tekst} placeholder = "Write here the town you want to see a weather" onChange = {(e)=>setTekst(e.target.value)}/>
         <ul>
           {tekst && array1.map((item,index)=>(
-            <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer',color:'white'}}>{item}</li>))}
+            <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer'}}>{item}</li>))}
         </ul>
       </div>
       <button>Search location</button>

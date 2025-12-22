@@ -30,9 +30,9 @@ ul{
     align-items: center;
     background-color:rgb(252, 252, 252);
     border-radius:25px;
-    width: 250px; 
+    width: 290px; 
     color:black;
-    margin:2px 0 0;
+    margin:2px 2px 0;
     padding:0;
     list-style:none;
 }
