@@ -25,10 +25,12 @@ function Main(){
     <div>
       <div className="main">
         <input type = "text" value = {tekst} placeholder = "Write here the town you want to see a weather" onChange = {(e)=>setTekst(e.target.value)}/>
+        {tekst && (
         <ul>
-          {tekst && array1.map((item,index)=>(
+          {array1.map((item,index)=>(
             <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer'}}>{item}</li>))}
         </ul>
+          )}  
       </div>
       <button>Search location</button>
     </div>
