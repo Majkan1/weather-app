@@ -26,6 +26,7 @@ function Main({tekst,setTekst}){
 
 function Picture({tekst}){
   const [weather,setWeather] = useState(null);
+  const [place, setPlace] = useState(null);
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState(null);
 
@@ -36,16 +37,9 @@ function Picture({tekst}){
       const q = (tekst ?? '').trim();
       if (!q) {
         setWeather(null);
+        setPlace(null);
         setStatus('idle');
         setError(null);
-        return;
-      }
-
-      const apiKey = import.meta.env.VITE_OWM_API_KEY;
-      if (!apiKey) {
-        setWeather(null);
-        setStatus('error');
-        setError('Missing API key. Set VITE_OWM_API_KEY in .env.local');
         return;
       }
 
@@ -53,13 +47,41 @@ function Picture({tekst}){
       setError(null);
       setWeather(null);
 
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(q)}&appid=${encodeURIComponent(apiKey)}&units=metric&lang=pl`;
-      const res = await fetch(url, { signal: controller.signal });
+      // 1) Geocode city name -> coordinates (no API key required)
+      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=1&language=pl&format=json`;
+      const geoRes = await fetch(geoUrl, { signal: controller.signal });
+      const geoData = await geoRes.json().catch(() => null);
+
+      if (!geoRes.ok) {
+        throw new Error(`Geocoding failed (HTTP ${geoRes.status})`);
+      }
+
+      const first = geoData?.results?.[0];
+      if (!first) {
+        throw new Error('City not found');
+      }
+
+      const lat = first.latitude;
+      const lon = first.longitude;
+      setPlace({
+        name: first.name,
+        country: first.country,
+        admin1: first.admin1,
+        latitude: lat,
+        longitude: lon,
+      });
+
+      // 2) Fetch current weather for coordinates
+      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${encodeURIComponent(lat)}&longitude=${encodeURIComponent(lon)}&current=temperature_2m,wind_speed_10m,precipitation,weather_code&timezone=auto`;
+      const res = await fetch(forecastUrl, { signal: controller.signal });
       const data = await res.json().catch(() => null);
 
       if (!res.ok) {
-        const msg = data?.message ? String(data.message) : `HTTP ${res.status}`;
-        throw new Error(msg);
+        throw new Error(`Weather fetch failed (HTTP ${res.status})`);
+      }
+
+      if (!data?.current) {
+        throw new Error('Weather data missing');
       }
 
       setWeather(data);
@@ -86,10 +108,21 @@ function Picture({tekst}){
 
       {weather && (
         <div className = "Div">
-          <p>City: {weather?.name}</p>
-          <p>Temp: {weather?.main?.temp}°C</p>
-          <p>Wind speed: {weather?.wind?.speed} m/s</p>
-          <p>Rain (1h): {weather?.rain?.['1h'] ?? 0} mm</p>
+          <p>
+            City: {place?.name}
+            {place?.admin1 ? `, ${place.admin1}` : ''}
+            {place?.country ? `, ${place.country}` : ''}
+          </p>
+          <p>
+            Temp: {weather?.current?.temperature_2m}{weather?.current_units?.temperature_2m}
+          </p>
+          <p>
+            Wind speed: {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
+          </p>
+          <p>
+            Precipitation: {weather?.current?.precipitation}{weather?.current_units?.precipitation}
+          </p>
+          <p>Weather code: {weather?.current?.weather_code}</p>
         </div>
       )}
     </>
