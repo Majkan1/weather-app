@@ -20,7 +20,7 @@ function Main(){
     'Berlin','Germany'
   ];
 
-  const array1 = array.filter(item => item.toLowerCase().includes(tekst.toLowerCase()));
+  const array1 = array.filter(item => item.toLowerCase().startsWith(tekst.toLowerCase()));
   return (
     <div>
       <div className="main">
