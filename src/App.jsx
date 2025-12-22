@@ -29,7 +29,17 @@ function Picture({tekst}){
   const [weather,setWeather] = useState(null);
   useEffect(()=>{
     async function Data(){
-      const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,rain,snowfall,cloud_cover_low');
+    const cities = {
+    Berlin: { lat: 52.52, lon: 13.41 },
+    Warsaw: { lat: 52.23, lon: 21.01 },
+    Minsk: { lat: 53.9, lon: 27.5667 },
+    Tokyo: { lat: 35.68, lon: 139.76 },
+    Paris: { lat: 48.85, lon: 2.35 }
+    // Add more cities here
+  };
+      const { lat, lon } = cities[tekst]
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,rain,snowfall,cloud_cover_low`;
+      const res = await fetch(url);
       const data = await res.json();
       setWeather(data);
     }
