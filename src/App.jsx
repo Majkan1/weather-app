@@ -3,17 +3,17 @@ import {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import './App.css'
 export default function App() {
+  const [tekst,setTekst] = useState("");
   return (
       <>
-        <Main/>
+        <Main tekst= {tekst} setTekst = {setTekst}/>
         <Nav/>
-        <Picture/>
+        <Picture tekst = {tekst}/>
       </>
   )
 }
 
-function Main(){
-  const [tekst,setTekst] = useState("");
+function Main({tekst,setTekst}){
 
   const array = [
     'Warsaw','Minsk',
@@ -46,7 +46,7 @@ function Nav(){
   )
 }
 
-function Picture(){
+function Picture(tekst){
   const [weather,setWeather] = useState(null);
   useEffect(()=>{
     async function Data(){
@@ -55,7 +55,7 @@ function Picture(){
       setWeather(data);
     }
     Data();
-  },[])
+  },[tekst])
     return (
     <>
       {weather && (
