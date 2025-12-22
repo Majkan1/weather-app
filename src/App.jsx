@@ -1,5 +1,4 @@
-import {useState} from 'react';
-import {useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 export default function App() {
   const [tekst,setTekst] = useState("");
@@ -27,17 +26,19 @@ function Main({tekst,setTekst}){
 
 function Picture({tekst}){
   const [weather,setWeather] = useState(null);
+
   useEffect(()=>{
     async function Data(){
-    const cities = {
-    Berlin: { lat: 52.52, lon: 13.41 },
-    Warsaw: { lat: 52.23, lon: 21.01 },
-    Minsk: { lat: 53.9, lon: 27.5667 },
-    Tokyo: { lat: 35.68, lon: 139.76 },
-    Paris: { lat: 48.85, lon: 2.35 }
-  };
-      const { lat, lon } = cities[tekst]
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,rain,snowfall,cloud_cover_low`;
+      const cities = {
+        berlin: { name: 'Berlin', lat: 52.52, lon: 13.41 },
+        warsaw: { name: 'Warsaw', lat: 52.23, lon: 21.01 },
+        minsk: { name: 'Minsk', lat: 53.9, lon: 27.5667 },
+        tokyo: { name: 'Tokyo', lat: 35.68, lon: 139.76 },
+        paris: { name: 'Paris', lat: 48.85, lon: 2.35 },
+      };
+
+      const { lat, lon } = cities[tekst];
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,rain,snowfall,cloud_cover_low&timezone=auto`;
       const res = await fetch(url);
       const data = await res.json();
       setWeather(data);
