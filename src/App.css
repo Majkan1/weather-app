@@ -11,7 +11,7 @@ input{
     border:1px solid black;
     border-radius:15px;
     padding:8px 12px;
-    margin-top:2px;
+    margin-top:0;
 }
 
 .main{
@@ -20,7 +20,7 @@ input{
     flex-direction: column;
     width:100%;
     align-items:center;
-    padding:0;
+    padding:2px;
 }
 
 ul{
@@ -28,9 +28,10 @@ ul{
     flex-direction:column;
     justify-content:center;  
     align-items: center;
-    background-color:rgb(240, 234, 227);
+    background-color:rgb(252, 252, 252);
     border-radius:25px;
     width: 250px; 
+    color:black;
 }
 button{
     width:150px;
