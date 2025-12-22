@@ -33,7 +33,7 @@ function Picture({tekst}){
       const geoRes = await fetch(geoUrl);
       const geoData = await geoRes.json();
 
-      const lat = geoData.results.latitude;
+      const lat = geoData.results[0].latitude;
       const lon = geoData?.results?.[0]?.longitude;
       const name = geoData?.results?.[0]?.name;
       const admin1 = geoData?.results?.[0]?.admin1;
