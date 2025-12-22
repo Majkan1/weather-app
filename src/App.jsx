@@ -30,7 +30,7 @@ function Picture({tekst}){
   const [weather,setWeather] = useState(null);
   useEffect(()=>{
     async function Data(){
-      const res = await fetch('https://open-meteo.com/en/docs?hourly=temperature_2m,rain,snowfall,cloud_cover_low#location_and_time');
+      const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,rain,snowfall,cloud_cover_low');
       const data = await res.json();
       setWeather(data);
     }
