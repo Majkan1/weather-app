@@ -17,7 +17,6 @@ input{
 .main{
     display:flex;
     justify-content:center;
-    padding:0px;
     width:100%;
     align-items:center;
 }
