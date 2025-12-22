@@ -1,12 +1,12 @@
 import {useState} from 'react';
-import {BrowserRouter,Routers,Router,Link} from 'react=router-dom';
+import { Link } from 'react-router-dom';
 import './App.css'
 export default function App() {
   return (
       <>
         <Main/>
         <AddButton/>
-        <Route/>
+        <Nav/>
       </>
   )
 }
@@ -43,15 +43,12 @@ function AddButton(){
     )
 }
 
-function Route(){
+function Nav(){
   return (
     <>
-      <BrowserRouter>
-      
-        <nav>
-          <Link to = "/">Home</Link>
-        </nav>
-      </BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link>
+      </nav>
     </>
   )
 }
