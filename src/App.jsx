@@ -58,9 +58,12 @@ function Picture(){
   },[])
     return (
     <>
-      {weather && 
-        weather
-      }
+      {weather && (
+        <div>
+          <p>Timezone: {weather.timezone}</p>
+          <p>Lat/Lon: {weather.latitude}, {weather.longitude}</p>
+        </div>
+      )}
     </>
   )
 }
