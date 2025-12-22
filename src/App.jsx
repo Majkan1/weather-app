@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import {useEffect} from 'react';
-import { Link } from 'react-router-dom';
 import './App.css'
 export default function App() {
   const [tekst,setTekst] = useState("");
@@ -42,6 +41,7 @@ function Picture({tekst}){
         <div className = "Div">
           <p>Timezone: {weather.timezone}</p>
           <p>Lat/Lon: {weather.latitude}, {weather.longitude}</p>
+          <p>First temp: {weather?.hourly?.temperature_2m?.[0]}°C</p>
         </div>
       )}
     </>
