@@ -45,14 +45,14 @@ function Picture({tekst}){
       {weather && (
         <div className = "Div">
           <p>
-            City: {weather.nearest_area && weather.nearest_area[0] && weather.nearest_area[0].areaName && weather.nearest_area[0].areaName[0] ? weather.nearest_area[0].areaName[0].value : ''}
-            {weather.nearest_area && weather.nearest_area[0] && weather.nearest_area[0].region && weather.nearest_area[0].region[0] ? `, ${weather.nearest_area[0].region[0].value}` : ''}
-            {weather.nearest_area && weather.nearest_area[0] && weather.nearest_area[0].country && weather.nearest_area[0].country[0] ? `, ${weather.nearest_area[0].country[0].value}` : ''}
+            City: { weather.nearest_area[0].areaName[0].value}
+            { `${weather.nearest_area[0].region[0].value}`}
+            {`, ${weather.nearest_area[0].country[0].value}`}
           </p>
-          <p>Temp: {weather.current_condition && weather.current_condition[0] ? weather.current_condition[0].temp_C : ''}°C</p>
-          <p>Wind speed: {weather.current_condition && weather.current_condition[0] ? weather.current_condition[0].windspeedKmph : ''} km/h</p>
-          <p>Precipitation: {weather.current_condition && weather.current_condition[0] ? weather.current_condition[0].precipMM : ''} mm</p>
-          <p>Weather: {weather.current_condition && weather.current_condition[0] && weather.current_condition[0].weatherDesc && weather.current_condition[0].weatherDesc[0] ? weather.current_condition[0].weatherDesc[0].value : ''}</p>
+          <p>Temp: { weather.current_condition[0].temp_C}°C</p>
+          <p>Wind speed: { weather.current_condition[0].windspeedKmph} km/h</p>
+          <p>Precipitation: {weather.current_condition[0].precipMM} mm</p>
+          <p>Weather: {weather.current_condition[0].weatherDesc[0].value}</p>
         </div>
       )}
     </>
