@@ -12,6 +12,7 @@ input{
     border-radius:15px;
     padding:8px 12px;
     margin-right:21px;
+    margin:2px;
 }
 
 .main{
@@ -28,7 +29,7 @@ ul{
     flex-direction:column;
     justify-content:center;  
     align-items: center;
-    background-color:bisque;
+    background-color:rgb(240, 234, 227);
     border-radius:25px;
     width: 250px; 
 }
