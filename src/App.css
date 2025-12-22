@@ -43,3 +43,12 @@ button{
     border:1px solid lightgreen;
     border-radius: 12px;
 }
+
+.Div{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:500px;
+    width:300px;
+}

@@ -59,7 +59,7 @@ function Picture(){
     return (
     <>
       {weather && (
-        <div>
+        <div className = "Div">
           <p>Timezone: {weather.timezone}</p>
           <p>Lat/Lon: {weather.latitude}, {weather.longitude}</p>
         </div>
