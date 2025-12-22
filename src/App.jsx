@@ -28,23 +28,34 @@ function Picture({tekst}){
   const [weather, setWeather] = useState(null);
   useEffect(() => {
     async function Data() {
-      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(tekst ?? '')}&count=1&language=pl&format=json`;
+      const query = tekst.trim();
+      if (!query) {
+        setWeather(null);
+        return;
+      }
+
+      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=pl&format=json`;
       const geoRes = await fetch(geoUrl);
       const geoData = await geoRes.json();
 
-      const first = geoData?.results?.[0];
-
-      const lat = first.latitude;
-      const lon = first.longitude;
+      const lat = geoData?.results?.[0]?.latitude;
+      const lon = geoData?.results?.[0]?.longitude;
+      const name = geoData?.results?.[0]?.name;
+      const admin1 = geoData?.results?.[0]?.admin1;
+      const country = geoData?.results?.[0]?.country;
+      if (lat == null || lon == null) {
+        setWeather(null);
+        return;
+      }
 
       const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,precipitation,weather_code&timezone=auto`;
       const res = await fetch(forecastUrl);
       const data = await res.json();
 
       setWeather({
-        placeName: first.name,
-        admin1: first.admin1,
-        country: first.country,
+        placeName: name,
+        admin1,
+        country,
         ...data,
       });
     }
