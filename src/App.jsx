@@ -15,13 +15,7 @@ export default function App() {
 
 function Main({tekst,setTekst}){
 
-  const array = [
-    'Warsaw','Minsk',
-    'Belarus','Poland',
-    'Berlin','Germany'
-  ];
-
-  const array1 = array.filter(item => item.toLowerCase().startsWith(tekst.toLowerCase()));
+  const array1 = tekst ? [tekst] : [];
   return (
     <div>
       <div className="main">

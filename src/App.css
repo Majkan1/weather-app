@@ -37,13 +37,6 @@ ul{
     padding:0;
     list-style:none;
 }
-button{
-    width:150px;
-    height:25px;
-    background-color: yellow;
-    border:1px solid lightgreen;
-    border-radius: 12px;
-}
 
 .Div{
     display:flex;
