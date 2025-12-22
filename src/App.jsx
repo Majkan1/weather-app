@@ -25,57 +25,34 @@ function Main({tekst,setTekst}){
 }
 
 function Picture({tekst}){
-  const [weather, setWeather] = useState(null);
-  useEffect(() => {
-    async function Data() {
+  const [weather,setWeather] = useState(null);
 
-      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(tekst)}&count=1&language=pl&format=json`;
-      const geoRes = await fetch(geoUrl);
-      const geoData = await geoRes.json();
-
-      const lat = geoData.results.latitude;
-      const lon = geoData?.results?.[0]?.longitude;
-      const name = geoData?.results?.[0]?.name;
-      const admin1 = geoData?.results?.[0]?.admin1;
-      const country = geoData?.results?.[0]?.country;
-      if (lat == null || lon == null) {
+  useEffect(()=>{
+    async function Data(){
+      try {
+        const url = `https://wttr.in/${encodeURIComponent(tekst)}?format=j1&lang=pl`;
+        const res = await fetch(url);
+        const data = await res.json();
+        setWeather(data);
+      } catch {
         setWeather(null);
-        return;
       }
-
-      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,precipitation,weather_code&timezone=auto`;
-      const res = await fetch(forecastUrl);
-      const data = await res.json();
-
-      setWeather({
-        placeName: name,
-        admin1,
-        country,
-        ...data,
-      });
     }
-      Data();
-    },[tekst]);
-
-  return (
+    Data();
+  },[tekst])
+    return (
     <>
       {weather && (
-        <div className="Div">
+        <div className = "Div">
           <p>
-            City: {weather?.placeName}
-            {weather?.admin1 ? `, ${weather.admin1}` : ''}
-            {weather?.country ? `, ${weather.country}` : ''}
+            City: {weather.nearest_area && weather.nearest_area[0] && weather.nearest_area[0].areaName && weather.nearest_area[0].areaName[0] ? weather.nearest_area[0].areaName[0].value : ''}
+            {weather.nearest_area && weather.nearest_area[0] && weather.nearest_area[0].region && weather.nearest_area[0].region[0] ? `, ${weather.nearest_area[0].region[0].value}` : ''}
+            {weather.nearest_area && weather.nearest_area[0] && weather.nearest_area[0].country && weather.nearest_area[0].country[0] ? `, ${weather.nearest_area[0].country[0].value}` : ''}
           </p>
-          <p>
-            Temp: {weather?.current?.temperature_2m}{weather?.current_units?.temperature_2m}
-          </p>
-          <p>
-            Wind speed: {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
-          </p>
-          <p>
-            Precipitation: {weather?.current?.precipitation}{weather?.current_units?.precipitation}
-          </p>
-          <p>Weather code: {weather?.current?.weather_code}</p>
+          <p>Temp: {weather.current_condition && weather.current_condition[0] ? weather.current_condition[0].temp_C : ''}°C</p>
+          <p>Wind speed: {weather.current_condition && weather.current_condition[0] ? weather.current_condition[0].windspeedKmph : ''} km/h</p>
+          <p>Precipitation: {weather.current_condition && weather.current_condition[0] ? weather.current_condition[0].precipMM : ''} mm</p>
+          <p>Weather: {weather.current_condition && weather.current_condition[0] && weather.current_condition[0].weatherDesc && weather.current_condition[0].weatherDesc[0] ? weather.current_condition[0].weatherDesc[0].value : ''}</p>
         </div>
       )}
     </>
