@@ -28,13 +28,8 @@ function Picture({tekst}){
   const [weather, setWeather] = useState(null);
   useEffect(() => {
     async function Data() {
-      const query = tekst.trim();
-      if (!query) {
-        setWeather(null);
-        return;
-      }
 
-      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=pl&format=json`;
+      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(tekst)}&count=1&language=pl&format=json`;
       const geoRes = await fetch(geoUrl);
       const geoData = await geoRes.json();
 
