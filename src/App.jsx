@@ -7,7 +7,6 @@ export default function App() {
   return (
       <>
         <Main tekst= {tekst} setTekst = {setTekst}/>
-        <Nav/>
         <Picture tekst = {tekst}/>
       </>
   )
@@ -17,34 +16,21 @@ function Main({tekst,setTekst}){
 
   const array1 = tekst ? [tekst] : [];
   return (
-    <div>
-      <div className="main">
-        <input type = "text" value = {tekst} placeholder = "Write here the town you want to see a weather" onChange = {(e)=>setTekst(e.target.value)}/>
-        <ul>
-          {tekst && array1.map((item,index)=>(
-            <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer'}}>{item}</li>))}
-        </ul>  
-      </div>
-      <button>Search location</button>
+    <div className="main">
+      <input type = "text" value = {tekst} placeholder = "Write here the town you want to see a weather" onChange = {(e)=>setTekst(e.target.value)}/>
+      <ul>
+        {tekst && array1.map((item,index)=>(
+          <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer'}}>{item}</li>))}
+      </ul>  
     </div>
   )
 }
 
-function Nav(){
-  return (
-    <>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </>
-  )
-}
-
-function Picture(tekst){
+function Picture({tekst}){
   const [weather,setWeather] = useState(null);
   useEffect(()=>{
     async function Data(){
-      const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m');
+      const res = await fetch('https://open-meteo.com/en/docs?bounding_box=-90,-180,90,180#location_and_time');
       const data = await res.json();
       setWeather(data);
     }
