@@ -41,8 +41,8 @@ function Picture({tekst}){
       {weather && (
         <div className = "Div">
           <p>Timezone: {weather.timezone}</p>
-          <p>Lat/Lon: {weather.latitude}, {weather.longitude}</p>
-          <p>First temp: {weather?.hourly?.temperature_2m?.[0]}°C</p>
+          <p>Lat/Lon: {weather.wind}</p>
+          <p>First temp: {weather.rain}</p>
         </div>
       )}
     </>
