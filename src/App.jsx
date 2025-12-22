@@ -35,7 +35,6 @@ function Picture({tekst}){
     Minsk: { lat: 53.9, lon: 27.5667 },
     Tokyo: { lat: 35.68, lon: 139.76 },
     Paris: { lat: 48.85, lon: 2.35 }
-    // Add more cities here
   };
       const { lat, lon } = cities[tekst]
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,rain,snowfall,cloud_cover_low`;
