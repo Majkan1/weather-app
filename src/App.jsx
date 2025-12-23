@@ -15,7 +15,7 @@ function Main({tekst,setTekst}){
   const array1 = tekst ? [tekst] : [];
   return (
     <div className="main">
-      <input type = "text" value = {tekst} placeholder = "Write here the town you want to see a weather" onChange = {(e)=>setTekst(e.target.value)}/>
+      <input type = "text" value = {tekst} placeholder = "Write here the town" onChange = {(e)=>setTekst(e.target.value)}/>
       <ul>
         {tekst && array1.map((item,index)=>(
           <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer'}}>{item}</li>))}
@@ -83,7 +83,6 @@ function Picture({tekst}){
           <img className="weatherIcon" src={iconUrl(weather)} alt="weather" />
           <p>
             City: {weather?.placeName}
-            {weather?.admin1 ? `, ${weather.admin1}` : ''}
             {weather?.country ? `, ${weather.country}` : ''}
           </p>
           <p>
@@ -91,9 +90,6 @@ function Picture({tekst}){
           </p>
           <p>
             Wind speed: {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
-          </p>
-          <p>
-            Precipitation: {weather?.current?.precipitation}{weather?.current_units?.precipitation}
           </p>
           <p>Weather code: {weather?.current?.weather_code}</p>
         </div>
