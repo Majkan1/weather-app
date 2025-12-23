@@ -86,11 +86,11 @@ function Picture({tekst}){
             {weather?.country ? `, ${weather.country}` : ''}
           </p>
           <p>
-            <img src={new URL('./assets/all/thermometer.svg', import.meta.url).href} alt="temp" style={{width:'20px', height:'20px', marginRight:'5px'}} />
+            <img src={new URL('./assets/all/thermometer.svg', import.meta.url).href} alt="temp" style={{width:'50px', height:'50px', marginRight:'5px'}} />
             {weather?.current?.temperature_2m}{weather?.current_units?.temperature_2m}
           </p>
           <p>
-            <img src={new URL('./assets/all/wind.svg', import.meta.url).href} alt="wind" style={{width:'20px', height:'20px', marginRight:'5px'}} />
+            <img src={new URL('./assets/all/wind.svg', import.meta.url).href} alt="wind" style={{width:'50px', height:'50px', marginRight:'5px'}} />
             {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
           </p>
         </div>
