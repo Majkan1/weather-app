@@ -1,7 +1,7 @@
 body,html{
     margin:0px;
     height:100%;
-    background-color:rgb(26, 35, 126);
+    background-color:white;
 }
 
 input{
@@ -50,4 +50,9 @@ ul{
     color:cyan;
     margin-left:auto;
     margin-right:auto;
+}
+
+.weatherIcon{
+    width:140px;
+    height:140px;
 }

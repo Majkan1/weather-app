@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './App.css'
 export default function App() {
   const [tekst,setTekst] = useState("");
@@ -26,6 +26,25 @@ function Main({tekst,setTekst}){
 
 function Picture({tekst}){
   const [weather, setWeather] = useState(null);
+
+  const iconUrl = useMemo(() => {
+  const icons = import.meta.glob('./assets/all/*.svg', { eager: true, query: '?url', import: 'default' });
+  const pick = (n) => icons[`./assets/all/${n}`] || icons['./assets/all/not-available.svg'];
+  return (w) => {
+    const c = w?.current; if (!c) return pick('not-available.svg');
+    if ((c.wind_speed_10m ?? 0) >= 40) return pick('wind.svg');
+    const day = c.is_day === 1 || c.is_day === true, code = +c.weather_code;
+    const n = code===0 ? (day?'clear-day.svg':'clear-night.svg')
+      : code<=3 ? (day?'overcast-day.svg':'overcast-night.svg')
+      : (code===45||code===48) ? (day?'fog-day.svg':'fog-night.svg')
+      : (code>=51&&code<=67) ? 'rain.svg'
+      : ((code>=71&&code<=77)||(code>=85&&code<=86)) ? 'snow.svg'
+      : (code>=95&&code<=99) ? (day?'thunderstorms-day.svg':'thunderstorms-night.svg')
+      : 'not-available.svg';
+    return pick(n);
+  };
+}, []);
+
   useEffect(() => {
     async function Data() {
 
@@ -43,7 +62,7 @@ function Picture({tekst}){
         return;
       }
 
-      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,precipitation,weather_code&timezone=auto`;
+      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,precipitation,weather_code,is_day&timezone=auto`;
       const res = await fetch(forecastUrl);
       const data = await res.json();
 
@@ -61,6 +80,7 @@ function Picture({tekst}){
     <>
       {weather && (
         <div className="Div">
+          <img className="weatherIcon" src={iconUrl(weather)} alt="weather" />
           <p>
             City: {weather?.placeName}
             {weather?.admin1 ? `, ${weather.admin1}` : ''}
