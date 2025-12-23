@@ -85,13 +85,15 @@ function Picture({tekst}){
             City: {weather?.placeName}
             {weather?.country ? `, ${weather.country}` : ''}
           </p>
-          <div className = "temperature">
-            <img src={new URL('./assets/all/thermometer.svg', import.meta.url).href} alt="temp" style={{width:'50px', height:'50px', marginRight:'5px'}} />
-            {weather?.current?.temperature_2m}{weather?.current_units?.temperature_2m}
-          </div>
-          <div className='wind'>
-            <img src={new URL('./assets/all/wind.svg', import.meta.url).href} alt="wind" style={{width:'50px', height:'50px', marginRight:'5px'}} />
-            {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
+          <div className='Both-parameters'>
+            <div className = "temperature">
+              <img src={new URL('./assets/all/thermometer.svg', import.meta.url).href} alt="temp" style={{width:'50px', height:'50px', marginRight:'5px'}} />
+              {weather?.current?.temperature_2m}{weather?.current_units?.temperature_2m}
+            </div>
+            <div className='wind'>
+              <img src={new URL('./assets/all/wind.svg', import.meta.url).href} alt="wind" style={{width:'50px', height:'50px', marginRight:'5px'}} />
+              {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
+            </div>
           </div>
         </div>
       )}
