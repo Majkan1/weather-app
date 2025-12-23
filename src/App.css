@@ -2,7 +2,7 @@ body,html{
     margin:0px;
     height:100%;
     background-color:white;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 input{
@@ -25,7 +25,19 @@ input{
     padding:2px;
 }
 
-
+ul{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;  
+    align-items: center;
+    background-color:rgb(252, 252, 252);
+    border-radius:25px;
+    width: 290px; 
+    color:white;
+    margin:2px 2px 0;
+    padding:0;
+    list-style:none;
+}
 
 .Div{
     display:flex;
