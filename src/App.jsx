@@ -91,7 +91,6 @@ function Picture({tekst}){
           <p>
             Wind speed: {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
           </p>
-          <p>Weather code: {weather?.current?.weather_code}</p>
         </div>
       )}
     </>
