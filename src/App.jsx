@@ -48,7 +48,7 @@ function Picture({tekst}){
   useEffect(() => {
     async function Data() {
 
-      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(tekst)}&count=1&language=pl&format=json`;
+      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(tekst)}&count=1&language=en&format=json`;
       const geoRes = await fetch(geoUrl);
       const geoData = await geoRes.json();
 
