@@ -12,14 +12,10 @@ export default function App() {
 
 function Main({tekst,setTekst}){
 
-  const array1 = tekst ? [tekst] : [];
   return (
     <div className="main">
       <input type = "text" value = {tekst} placeholder = "Write here the town" onChange = {(e)=>setTekst(e.target.value)}/>
-      <ul>
-        {tekst && array1.map((item,index)=>(
-          <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer'}}>{item}</li>))}
-      </ul>  
+  
     </div>
   )
 }
