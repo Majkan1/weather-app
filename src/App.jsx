@@ -3,10 +3,12 @@ import './App.css'
 export default function App() {
   const [tekst,setTekst] = useState("");
   return (
-      <>
-        <Main tekst= {tekst} setTekst = {setTekst}/>
-        <Picture tekst = {tekst}/>
-      </>
+      <div className="app">
+        <div className="panel">
+          <Main tekst= {tekst} setTekst = {setTekst}/>
+          <Picture tekst = {tekst}/>
+        </div>
+      </div>
   )
 }
 
@@ -15,11 +17,21 @@ function Main({tekst,setTekst}){
   const array1 = tekst ? [tekst] : [];
   return (
     <div className="main">
-      <input type = "text" value = {tekst} placeholder = "Write here the town" onChange = {(e)=>setTekst(e.target.value)}/>
-      <ul>
-        {tekst && array1.map((item,index)=>(
-          <li onClick = {()=> setTekst(item)} key = {index} style = {{cursor:'pointer'}}>{item}</li>))}
-      </ul>  
+      <h1 className="title">Weather</h1>
+      <p className="subtitle">Type a city to see current conditions.</p>
+      <input
+        className="search"
+        type="text"
+        value={tekst}
+        placeholder="Write here the town"
+        onChange={(e)=>setTekst(e.target.value)}
+      />
+      {tekst && (
+        <ul className="suggestions">
+          {array1.map((item,index)=>(
+            <li className="suggestion" onClick={() => setTekst(item)} key={index}>{item}</li>))}
+        </ul>
+      )}
     </div>
   )
 }
@@ -79,23 +91,37 @@ function Picture({tekst}){
   return (
     <>
       {weather && (
-        <div className="Div">
-          <img className="weatherIcon" src={iconUrl(weather)} alt="weather" />
-          <p>
-            City: {weather?.placeName}
-            {weather?.country ? `, ${weather.country}` : ''}
-          </p>
-          <div className='Both-parameters'>
-            <div className = "temperature">
-              <img src={new URL('./assets/all/thermometer.svg', import.meta.url).href} alt="temp" style={{width:'50px', height:'50px', marginRight:'5px'}} />
-              {weather?.current?.temperature_2m}{weather?.current_units?.temperature_2m}
-            </div>
-            <div className='wind'>
-              <img src={new URL('./assets/all/wind.svg', import.meta.url).href} alt="wind" style={{width:'50px', height:'50px', marginRight:'5px'}} />
-              {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
+        <section className="card" aria-label="Weather result">
+          <div className="cardHeader">
+            <img className="weatherIcon" src={iconUrl(weather)} alt="weather" />
+            <div className="placeBlock">
+              <div className="placeLabel">City</div>
+              <div className="place">
+                {weather?.placeName}
+                {weather?.admin1 ? `, ${weather.admin1}` : ''}
+                {weather?.country ? `, ${weather.country}` : ''}
+              </div>
             </div>
           </div>
-        </div>
+
+          <div className="metrics">
+            <div className="metric">
+              <img className="metricIcon" src={new URL('./assets/all/thermometer.svg', import.meta.url).href} alt="temperature" />
+              <div className="metricLabel">Temperature</div>
+              <div className="metricValue">
+                {weather?.current?.temperature_2m}{weather?.current_units?.temperature_2m}
+              </div>
+            </div>
+
+            <div className="metric">
+              <img className="metricIcon" src={new URL('./assets/all/wind.svg', import.meta.url).href} alt="wind" />
+              <div className="metricLabel">Wind</div>
+              <div className="metricValue">
+                {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
+              </div>
+            </div>
+          </div>
+        </section>
       )}
     </>
   )
