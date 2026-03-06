@@ -2,7 +2,7 @@
 
 Hi, I’m **Mikołaj**! 👋  
 
-Welcome to my **first weather application**. This project is a part of my programming journey, and I’m excited to share it with you.  
+Welcome to my **first React weather application**. This project is a part of my programming journey, and I’m excited to share it with you.  
 
 Regurlarly I  make something so **stay tuned**! I hope you enjoy exploring the app and following along as I learn and grow as a developer.  
 
