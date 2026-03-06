@@ -1,33 +1,38 @@
-# Weather App 🌤️
+# 🌤️ Weather App
 
-Hi, I am Mikołaj and today I want to show you my first weather application! 👋
+Hi, I’m **Mikołaj**! 👋  
 
-<p align="center">
-  <img width="253" height="189" alt="Weather App Preview" src="https://github.com/user-attachments/assets/4f679643-e194-46fc-a567-995e95740cfe" />
-</p>
+Welcome to my **first weather application**. This project is a part of my programming journey, and I’m excited to share it with you.  
 
-I am very excited that we can share our programming journey together. Every day I will be making some changes and improvements, so stay tuned! 
-
-I hope you enjoy my work, and see you soon. 🚀
+Every day I will make updates and improvements, so **stay tuned**! I hope you enjoy exploring the app and following along as I learn and grow as a developer.  
 
 ---
 
-## ✨ Features
-*(Tutaj możesz wypisać, co już potrafi Twoja aplikacja - na przykład:)*
-* Displays current weather conditions.
-* Shows temperature and weather descriptions.
-* Clean and simple user interface.
+## 📸 Preview
 
-## 🛠️ Built With
-*(Zaktualizuj tę sekcję w zależności od tego, czego użyłeś)*
-* HTML5
-* CSS3
-* JavaScript
-* [OpenWeatherMap API](https://openweathermap.org/) *(zmień, jeśli używasz innego API)*
+<img width="253" height="189" alt="Weather App Screenshot" src="https://github.com/user-attachments/assets/4f679643-e194-46fc-a567-995e95740cfe" />
 
-## 🚀 Getting Started
-To view this project locally, simply follow these steps:
+---
 
-1. Clone the repository:
+## 🚀 Features
+
+- Check the **current weather** for any city.
+- Displays **temperature, humidity, and weather conditions**.
+- User-friendly and responsive design.
+- Continuous updates and improvements.
+
+---
+
+## ⚙️ Technologies Used
+
+- HTML, CSS, JavaScript
+- [Optional: React / TypeScript / API used] — adjust based on your stack
+- Weather API for live data (e.g., OpenWeatherMap)
+
+---
+
+## 🔧 How to Use
+
+1. Clone this repository:  
    ```bash
-   git clone [https://github.com/Twoj_Login/Nazwa_Repozytorium.git](https://github.com/Twoj_Login/Nazwa_Repozytorium.git)
+   git clone https://github.com/yourusername/weather-app.git
