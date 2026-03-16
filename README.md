@@ -8,8 +8,7 @@ A responsive weather application built with React and JavaScript. Search any cit
 
 ## Screenshot
 
-<img src = "weather.png">
----
+![Weather App Screenshot](./weather.png)
 
 ## Features
 
