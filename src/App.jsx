@@ -1,20 +1,20 @@
-import { useEffect, useMemo, useState } from 'react';
-import './App.css'
+import { useEffect, useState } from 'react';
+import './App.css';
+
 export default function App() {
-  const [tekst,setTekst] = useState("");
+  const [city, setCity] = useState("");
+
   return (
-      <div className="app">
-        <div className="panel">
-          <Main tekst= {tekst} setTekst = {setTekst}/>
-          <Picture tekst = {tekst}/>
-        </div>
+    <div className="app">
+      <div className="panel">
+        <Main city={city} setCity={setCity} />
+        <WeatherCard city={city} />
       </div>
-  )
+    </div>
+  );
 }
 
-function Main({tekst,setTekst}){
-
-  const array1 = tekst ? [tekst] : [];
+function Main({ city, setCity }) {
   return (
     <div className="main">
       <h1 className="title">Weather</h1>
@@ -22,107 +22,108 @@ function Main({tekst,setTekst}){
       <input
         className="search"
         type="text"
-        value={tekst}
+        value={city}
         placeholder="Write here the town"
-        onChange={(e)=>setTekst(e.target.value)}
+        onChange={(e) => setCity(e.target.value)}
       />
-      {tekst && (
-        <ul className="suggestions">
-          {array1.map((item,index)=>(
-            <li className="suggestion" onClick={() => setTekst(item)} key={index}>{item}</li>))}
-        </ul>
-      )}
     </div>
-  )
+  );
 }
 
-function Picture({tekst}){
+function WeatherCard({ city }) {
   const [weather, setWeather] = useState(null);
 
-  const iconUrl = useMemo(() => {
-  const icons = import.meta.glob('./assets/all/*.svg', { eager: true, query: '?url', import: 'default' });
-  const pick = (n) => icons[`./assets/all/${n}`] || icons['./assets/all/not-available.svg'];
-  return (w) => {
-    const c = w?.current; if (!c) return pick('not-available.svg');
-    if ((c.wind_speed_10m ?? 0) >= 40) return pick('wind.svg');
-    const day = c.is_day === 1 || c.is_day === true, code = +c.weather_code;
-    const n = code===0 ? (day?'clear-day.svg':'clear-night.svg')
-      : code<=3 ? (day?'overcast-day.svg':'overcast-night.svg')
-      : (code===45||code===48) ? (day?'fog-day.svg':'fog-night.svg')
-      : (code>=51&&code<=67) ? 'rain.svg'
-      : ((code>=71&&code<=77)||(code>=85&&code<=86)) ? 'snow.svg'
-      : (code>=95&&code<=99) ? (day?'thunderstorms-day.svg':'thunderstorms-night.svg')
-      : 'not-available.svg';
-    return pick(n);
-  };
-}, []);
+  function getIcon(current) {
+    if (!current) return 'not-available.svg';
+    if (current.wind_speed_10m >= 40) return 'wind.svg';
+    
+    const isDay = current.is_day ? '-day' : '-night';
+    const code = current.weather_code;
+
+    if (code === 0) return `clear${isDay}.svg`;
+    if (code <= 3) return `overcast${isDay}.svg`;
+    if (code === 45 || code === 48) return `fog${isDay}.svg`;
+    if (code >= 51 && code <= 67) return 'rain.svg';
+    if ((code >= 71 && code <= 77) || (code >= 85 && code <= 86)) return 'snow.svg';
+    if (code >= 95 && code <= 99) return `thunderstorms${isDay}.svg`;
+    
+    return 'not-available.svg';
+  }
 
   useEffect(() => {
-    async function Data() {
+    async function fetchWeather() {
+      try {
+        const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`);
+        const geoData = await geoRes.json();
+        const location = geoData.results?.[0];
 
-      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(tekst)}&count=1&language=en&format=json`;
-      const geoRes = await fetch(geoUrl);
-      const geoData = await geoRes.json();
+        if (!location) {
+          setWeather(null);
+          return;
+        }
 
-      const lat = geoData?.results?.[0]?.latitude;
-      const lon = geoData?.results?.[0]?.longitude;
-      const name = geoData?.results?.[0]?.name;
-      const admin1 = geoData?.results?.[0]?.admin1;
-      const country = geoData?.results?.[0]?.country;
-      if (lat == null || lon == null) {
+        const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,wind_speed_10m,precipitation,weather_code,is_day&timezone=auto`);
+        const weatherData = await weatherRes.json();
+
+        setWeather({
+          placeName: location.name,
+          admin1: location.admin1,
+          country: location.country,
+          current: weatherData.current,
+          units: weatherData.current_units
+        });
+      } catch (error) {
+        console.error("Failed to fetch weather data", error);
         setWeather(null);
-        return;
       }
-
-      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,precipitation,weather_code,is_day&timezone=auto`;
-      const res = await fetch(forecastUrl);
-      const data = await res.json();
-
-      setWeather({
-        placeName: name,
-        admin1,
-        country,
-        ...data,
-      });
     }
-      Data();
-    },[tekst]);
+
+    const timeoutId = setTimeout(() => {
+      if (!city) {
+        setWeather(null);
+      } else {
+        fetchWeather();
+      }
+    }, 500);
+    
+    return () => clearTimeout(timeoutId);
+  }, [city]);
+
+  if (!city || !weather) return null;
+
+  const iconUrl = new URL(`./assets/all/${getIcon(weather.current)}`, import.meta.url).href;
+  const thermometerUrl = new URL('./assets/all/thermometer.svg', import.meta.url).href;
+  const windUrl = new URL('./assets/all/wind.svg', import.meta.url).href;
 
   return (
-    <>
-      {weather && (
-        <section className="card" aria-label="Weather result">
-          <div className="cardHeader">
-            <img className="weatherIcon" src={iconUrl(weather)} alt="weather" />
-            <div className="placeBlock">
-              <div className="placeLabel">City</div>
-              <div className="place">
-                {weather?.placeName}
-                {weather?.admin1 ? `, ${weather.admin1}` : ''}
-                {weather?.country ? `, ${weather.country}` : ''}
-              </div>
-            </div>
+    <section className="card" aria-label="Weather result">
+      <div className="cardHeader">
+        <img className="weatherIcon" src={iconUrl} alt="weather" />
+        <div className="placeBlock">
+          <div className="placeLabel">City</div>
+          <div className="place">
+            {[weather.placeName, weather.admin1, weather.country].filter(Boolean).join(", ")}
           </div>
+        </div>
+      </div>
 
-          <div className="metrics">
-            <div className="metric">
-              <img className="metricIcon" src={new URL('./assets/all/thermometer.svg', import.meta.url).href} alt="temperature" />
-              <div className="metricLabel">Temperature</div>
-              <div className="metricValue">
-                {weather?.current?.temperature_2m}{weather?.current_units?.temperature_2m}
-              </div>
-            </div>
-
-            <div className="metric">
-              <img className="metricIcon" src={new URL('./assets/all/wind.svg', import.meta.url).href} alt="wind" />
-              <div className="metricLabel">Wind</div>
-              <div className="metricValue">
-                {weather?.current?.wind_speed_10m}{weather?.current_units?.wind_speed_10m}
-              </div>
-            </div>
+      <div className="metrics">
+        <div className="metric">
+          <img className="metricIcon" src={thermometerUrl} alt="temperature" />
+          <div className="metricLabel">Temperature</div>
+          <div className="metricValue">
+            {weather.current.temperature_2m}{weather.units.temperature_2m}
           </div>
-        </section>
-      )}
-    </>
-  )
+        </div>
+
+        <div className="metric">
+          <img className="metricIcon" src={windUrl} alt="wind" />
+          <div className="metricLabel">Wind</div>
+          <div className="metricValue">
+            {weather.current.wind_speed_10m}{weather.units.wind_speed_10m}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
