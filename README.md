@@ -1,109 +1,113 @@
-# 🌤 Real-Time Weather Dashboard
+# 🌤️ Weather App
 
-A responsive weather application built with React and JavaScript. Search any city and instantly see current temperature, wind speed, and weather conditions — powered by a live REST API.
+A minimal React weather app that shows current conditions for any city using free open-source APIs.
 
-> **Live demo:** https://majkan1.github.io/weather-app/
+## 🚀 Live Demo
 
----
+**Live demo:** https://majkan1.github.io/weather-app/
 
-## Screenshot
+## 📸 Preview
 
 ![Weather App Screenshot](./weather.png)
 
-## Features
+---
 
-- Search any city by name with autocomplete suggestions
-- Displays current temperature (°C), wind speed (km/h), and weather icon
-- Comprehensive error handling — invalid cities, network failures, and empty queries all handled gracefully
-- Loading states prevent UI flashing during API calls
-- Fully responsive layout — works on mobile and desktop
+## 🛠️ Tech Stack
+
+- **React 18** — UI
+- **JavaScript** — no TypeScript in this project
+- **CSS** — custom styles in `App.css`
+- **Open-Meteo API** — free weather data (no API key required)
+- **Open-Meteo Geocoding API** — city name to coordinates
 
 ---
 
-## Tech stack
-
-| Technology | Purpose |
-|---|---|
-| React 18 | UI component architecture |
-| JavaScript ES6+ | Application logic |
-| OpenWeatherMap API | Live weather data |
-| Fetch + async/await | HTTP requests |
-| React.memo / useMemo | Render optimisation |
-| Vite | Build tool and dev server |
-| GitHub Pages | Deployment |
-
----
-
-## Technical decisions
-
-**Why React.memo and useMemo?**
-The `WeatherCard` component was re-rendering on every keystroke in the search input, even though the weather data hadn't changed. Wrapping it in `React.memo` and memoising the derived display values with `useMemo` means the card only re-renders when the API actually returns new data — not on every user input event.
-
-**Why async/await over .then() chains?**
-Error handling with `.then().catch()` chains gets messy when you have multiple failure states (network error, invalid city, API rate limit). Using `async/await` with `try/catch` blocks makes each failure case explicit and easy to handle independently.
-
-**Why a separate loading state?**
-Without a loading state, there's a flash of stale data between searches. A dedicated `isLoading` boolean lets the UI show a spinner immediately on submit and hide the previous result until new data arrives — preventing a confusing UX where the user sees Warsaw's weather while searching for Berlin.
-
----
-
-## Getting started
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/Majkan1/weather-app.git
-cd weather-app
-
-# 2. Install dependencies
-npm install
-
-# 3. Create environment file
-cp .env.example .env
-```
-
-Open `.env` and add your API key:
-
-```
-VITE_WEATHER_API_KEY=your_api_key_here
-```
-
-Get a free key at [openweathermap.org/api](https://openweathermap.org/api) — the free tier is sufficient for this app.
-
-```bash
-# 4. Start the development server
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
----
-
-## Project structure
+## 📁 Project Structure
 
 ```
 src/
-├── components/
-│   ├── SearchBar.jsx       # Input with autocomplete dropdown
-│   ├── WeatherCard.jsx     # Main result card (memoised)
-│   └── ErrorMessage.jsx    # Reusable error display
-├── hooks/
-│   └── useWeather.js       # API fetching logic + state
-├── utils/
-│   └── formatWeather.js    # Data transformation helpers
-└── App.jsx
+├── App.jsx              # All components and logic
+├── App.css              # Styles
+├── main.jsx             # Entry point
+└── assets/
+    └── all/             # Weather SVG icons
+        ├── clear-day.svg
+        ├── clear-night.svg
+        ├── rain.svg
+        ├── snow.svg
+        ├── wind.svg
+        ├── fog-day.svg
+        ├── fog-night.svg
+        ├── overcast-day.svg
+        ├── overcast-night.svg
+        ├── thunderstorms-day.svg
+        ├── thunderstorms-night.svg
+        ├── thermometer.svg
+        └── not-available.svg
 ```
 
 ---
 
-## What I learned
+## ⚙️ Features
 
-- How to integrate a third-party REST API with proper error handling for multiple failure cases
-- When and why to use `React.memo` and `useMemo` — not just how to use them
-- How to design a loading state that prevents stale UI
-- Structuring a React app with custom hooks to separate API logic from display logic
+- Search any city by name
+- **500ms debounce** — API is called only after you stop typing
+- Displays:
+  - City name, region, country
+  - Dynamic weather icon (day/night aware)
+  - Temperature (°C)
+  - Wind speed (km/h)
+- Fully **responsive** — adapts to mobile screens
 
 ---
 
-## License
+## 🌐 APIs Used
 
-MIT
+| API | Usage | Auth |
+|---|---|---|
+| [Open-Meteo Geocoding](https://open-meteo.com/en/docs/geocoding-api) | City name → coordinates | None |
+| [Open-Meteo Forecast](https://open-meteo.com/en/docs) | Current weather data | None |
+
+Both APIs are completely free and require no API key.
+
+---
+
+## 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/your-repo-name.git
+
+# Navigate to the project folder
+cd your-repo-name
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+App will be available at `http://localhost:5173`
+
+---
+
+## 🌡️ Weather Codes
+
+The app maps WMO weather codes to icons:
+
+| Code | Condition |
+|---|---|
+| 0 | Clear sky |
+| 1–3 | Overcast |
+| 45, 48 | Fog |
+| 51–67 | Rain |
+| 71–77, 85–86 | Snow |
+| 95–99 | Thunderstorm |
+| Wind ≥ 40 km/h | Wind (overrides icon) |
+
+---
+
+## 📄 License
+
+MIT 
