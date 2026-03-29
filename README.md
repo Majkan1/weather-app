@@ -76,7 +76,7 @@ Both APIs are completely free and require no API key.
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/weather-app.git
+git clone https://github.com/Majkan1/weather-app.git
 
 # Navigate to the project folder
 cd your-repo-name
