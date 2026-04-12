@@ -14,7 +14,7 @@ export default function App() {
   );
 }
 
-function Main({ city, setCity }) {
+function Main({ city, setCity}) {
   return (
     <div className="main">
       <h1 className="title">Weather</h1>
