@@ -16,6 +16,7 @@ export default function Main({ city, setCity }: MainProps) {
         value={city}
         placeholder="Write here the town"
         onChange={(e) => setCity(e.target.value)}
+        spellCheck="false"
       />
     </div>
   );
